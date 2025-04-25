@@ -67,4 +67,15 @@ export class UsersService {
 
     throw new InternalServerErrorException('Please check server logs')
   }
+
+    async findById(id: string): Promise<User> {
+
+    try {
+      return await this.userRepository.findOneByOrFail({ id })
+
+    } catch (error) {
+      throw new NotFoundException(`${id} not found`)
+      
+    }
+  }
 }
